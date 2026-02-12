@@ -132,8 +132,12 @@
 
   /* Buttons */
   .btn-tech {
-    @apply relative px-8 py-4 bg-white/10 text-white font-bold uppercase tracking-wider text-sm overflow-hidden transition-all border border-white/20 rounded-lg hover:bg-primary-cyan hover:text-black hover:border-primary-cyan hover:shadow-[0_0_30px_rgba(0, 240, 255, 0.5)];
+    @apply relative px-8 py-4 bg-white/10 text-white font-bold uppercase tracking-wider text-sm overflow-hidden transition-all border border-white/20 rounded-lg hover:bg-primary-cyan hover:text-black hover:border-primary-cyan;
     font-family: var(--font-mono);
+  }
+
+  .btn-tech:hover {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
   }
 
   .btn-primary {
