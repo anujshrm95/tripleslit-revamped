@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 
