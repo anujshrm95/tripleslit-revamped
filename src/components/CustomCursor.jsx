@@ -29,23 +29,38 @@ const CustomCursor = () => {
 
     return (
         <>
+            {/* Inner Diamond - Instant Response */}
             <motion.div
-                className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary-cyan pointer-events-none z-[11000] mix-blend-difference"
+                className="fixed top-0 left-0 w-3 h-3 bg-primary-cyan pointer-events-none z-[11000] mix-blend-difference shadow-[0_0_10px_rgba(0,240,255,0.8)]"
+                style={{
+                    rotate: 45,
+                    translateX: '-50%',
+                    translateY: '-50%'
+                }}
                 animate={{
-                    x: mousePosition.x - 8,
-                    y: mousePosition.y - 8,
-                    scale: isHovering ? 2.5 : 1,
+                    x: mousePosition.x,
+                    y: mousePosition.y,
+                    scale: isHovering ? 0.5 : 1, // Shrink slightly when hovering to let outer bracket focus
                 }}
                 transition={{
-                    duration: 0
+                    duration: 0 // Instant movement
                 }}
             />
+
+            {/* Outer Tech Square - Follows with slight lag */}
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary-cyan pointer-events-none z-[10999]"
+                className="fixed top-0 left-0 w-8 h-8 border border-primary-cyan/50 pointer-events-none z-[10999]"
+                style={{
+                    translateX: '-50%',
+                    translateY: '-50%'
+                }}
                 animate={{
-                    x: mousePosition.x - 16,
-                    y: mousePosition.y - 16,
-                    scale: isHovering ? 1.5 : 1,
+                    x: mousePosition.x,
+                    y: mousePosition.y,
+                    scale: isHovering ? 1.4 : 1,
+                    rotate: isHovering ? 135 : 0, // Dramatic rotation on hover
+                    borderColor: isHovering ? 'var(--color-primary-cyan)' : 'rgba(0, 240, 255, 0.3)',
+                    borderWidth: isHovering ? '2px' : '1px'
                 }}
                 transition={{
                     type: "spring",
