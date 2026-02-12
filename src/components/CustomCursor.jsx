@@ -37,10 +37,7 @@ const CustomCursor = () => {
                     scale: isHovering ? 2.5 : 1,
                 }}
                 transition={{
-                    type: "spring",
-                    stiffness: 150,
-                    damping: 15,
-                    mass: 0.1
+                    duration: 0
                 }}
             />
             <motion.div
@@ -52,8 +49,8 @@ const CustomCursor = () => {
                 }}
                 transition={{
                     type: "spring",
-                    stiffness: 100,
-                    damping: 25,
+                    stiffness: 300,
+                    damping: 20,
                     mass: 0.2
                 }}
             />

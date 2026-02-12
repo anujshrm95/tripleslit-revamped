@@ -27,7 +27,7 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(0, 240
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={`relative overflow-hidden rounded-xl border border-white/10 bg-white/5 ${className}`}
+            className={`tech-card relative overflow-hidden rounded-xl border border-white/10 bg-white/5 ${className}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
