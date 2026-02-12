@@ -1,4 +1,4 @@
-import { ArrowUpRight, Code2, Cpu, Layout } from 'lucide-react';
+import { Code2, Cpu, Layout } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 
 const services = [
