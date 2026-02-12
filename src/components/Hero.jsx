@@ -1,97 +1,116 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Terminal, Globe, Cpu } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 
-const Hero = () => {
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-    const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+const Ticker = () => (
+    <div className="w-full bg-white/5 border-y border-white/10 overflow-hidden py-4 mt-20 relative z-20 backdrop-blur-sm">
+        <div className="animate-ticker flex whitespace-nowrap gap-16 items-center">
+            {[...Array(6)].map((_, i) => (
+                <div key={i} className="flex gap-16 text-white/40 font-mono text-sm uppercase tracking-widest">
+                    <span>React / Next.js</span>
+                    <span>✦</span>
+                    <span>AWS Infrastructure</span>
+                    <span>✦</span>
+                    <span>AI Agents</span>
+                    <span>✦</span>
+                    <span>Design Systems</span>
+                    <span>✦</span>
+                </div>
+            ))}
+        </div>
+    </div>
+);
 
+const Hero = () => {
     return (
-        <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-20">
+        <section className="relative min-h-[110vh] flex flex-col pt-32 overflow-hidden">
             <AuroraBackground />
 
-            <div className="layout-grid relative z-10 w-full">
-                <div className="flex flex-col items-start max-w-5xl">
-                    {/* Badge */}
+            <div className="layout-grid grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+
+                {/* Left Content (8 cols) */}
+                <div className="lg:col-span-8 flex flex-col justify-center">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="section-label"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="inline-flex items-center gap-2 mb-8"
                     >
-                        <span className="w-2 h-2 rounded-full bg-primary-cyan animate-pulse"></span>
-                        Available for Q1 2026
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="font-mono text-xs text-green-500 uppercase tracking-widest">System Operational</span>
                     </motion.div>
 
-                    {/* Heading - Fluid Typography handled in index.css */}
                     <motion.h1
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1, ease: [0.2, 0.65, 0.3, 0.9] }}
-                        className="font-bold tracking-tighter mb-8"
+                        transition={{ duration: 0.8 }}
+                        className="text-6xl md:text-8xl lg:text-9xl mb-8 leading-[0.9]"
                     >
-                        Build products that <br className="hidden md:block" />
-                        <span className="text-gradient-color">define the future.</span>
+                        FUTURE <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">PROOF</span> <br />
+                        SOFTWARE.
                     </motion.h1>
 
-                    {/* Subtext */}
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-white/60 max-w-2xl mb-12 font-light text-lg md:text-xl leading-relaxed"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="text-xl text-gray-400 max-w-2xl mb-12 font-mono"
                     >
-                        We are a premium digital product studio. We partner with ambitious
-                        brands to design, build, and ship world-class software at
-                        breakneck speeds.
+                        TripleSlited is a high-velocity engineering collective. We build pixel-perfect web platforms and AI infrastructure for the next generation of startups.
                     </motion.p>
 
-                    {/* Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto"
-                    >
-                        <a href="#contact" className="btn-hot group decoration-none">
-                            Start Project
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <button className="btn-secondary flex items-center justify-center gap-3 group">
-                            <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Play className="w-3 h-3 fill-black ml-0.5" />
-                            </div>
-                            Showreel
+                    <div className="flex flex-wrap gap-4">
+                        <button className="btn-tech">
+                            Initiate Project
                         </button>
+                        <button className="px-8 py-4 border border-white/20 text-white font-mono text-sm uppercase hover:bg-white/5 transition-colors">
+                            View Documentation
+                        </button>
+                    </div>
+                </div>
+
+                {/* Right Content / Density (4 cols) */}
+                <div className="lg:col-span-4 hidden lg:flex flex-col gap-4 mt-20">
+                    {/* Card 1: Stats */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.6 }}
+                        className="tech-card p-6"
+                    >
+                        <div className="flex justify-between items-start mb-8">
+                            <Cpu className="w-6 h-6 text-primary-cyan" />
+                            <span className="font-mono text-xs text-white/50">CPU_01</span>
+                        </div>
+                        <div className="text-4xl font-bold font-mono mb-1">98.2%</div>
+                        <div className="text-xs text-gray-400 uppercase tracking-widest">Efficiency Rating</div>
+                    </motion.div>
+
+                    {/* Card 2: Code Snippet */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.7 }}
+                        className="tech-card p-6 flex-1 min-h-[200px]"
+                    >
+                        <div className="flex gap-2 mb-4">
+                            <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+                        </div>
+                        <div className="font-mono text-xs text-gray-500 space-y-2">
+                            <p><span className="text-purple-400">const</span> <span className="text-blue-400">ship</span> = <span className="text-purple-400">async</span> () ={'>'} {'{'}</p>
+                            <p className="pl-4"><span className="text-purple-400">await</span> design.refine();</p>
+                            <p className="pl-4"><span className="text-purple-400">await</span> code.optimize();</p>
+                            <p className="pl-4"><span className="text-purple-400">return</span> <span className="text-green-400">"Success"</span>;</p>
+                            <p>{'}'}</p>
+                        </div>
                     </motion.div>
                 </div>
 
-                {/* Floating Stats / Elements for Desktop Parallax */}
-                <motion.div
-                    style={{ y: y2 }}
-                    className="hidden lg:block absolute right-0 top-1/4 w-64 glass-panel p-6 rotate-3 hover:rotate-0 transition-transform"
-                >
-                    <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-cyan to-primary-purple mb-2">
-                        99.9%
-                    </div>
-                    <div className="text-sm text-white/60">Uptime Guarantee across all deployed infrastructure</div>
-                </motion.div>
-
-                <motion.div
-                    style={{ y: y1 }}
-                    className="hidden lg:block absolute right-20 bottom-20 w-72 glass-panel p-6 -rotate-2 hover:rotate-0 transition-transform"
-                >
-                    <div className="flex -space-x-3 mb-4">
-                        {[1, 2, 3, 4].map(i => (
-                            <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-white/10 backdrop-blur-md flex items-center justify-center text-xs">
-                                U{i}
-                            </div>
-                        ))}
-                    </div>
-                    <div className="text-sm font-medium">Trusted by 40+ engineering teams worldwide</div>
-                </motion.div>
             </div>
+
+            <Ticker />
         </section>
     );
 };

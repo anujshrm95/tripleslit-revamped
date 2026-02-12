@@ -1,30 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-cyan: #00f3ff;
-  --color-primary-purple: #bc13fe;
-  --color-glass-bg: rgba(255, 255, 255, 0.03);
-  --color-glass-border: rgba(255, 255, 255, 0.06);
-  --color-dark: #030014;
-  --color-muted: rgba(255, 255, 255, 0.5);
+  --color-primary-cyan: #00f0ff;
+  /* Cyber Cyan */
+  --color-primary-purple: #7000ff;
+  /* Deep Tech Purple */
+  --color-dark: #050505;
+  --color-surface: #0a0a0a;
+
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* New Mono font for "Engineering" feel */
 
-  /* Animations */
-  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-ticker: ticker 40s linear infinite;
 
-  @keyframes shimmer {
-    from {
-      background-position: 0 0;
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
     }
 
-    to {
-      background-position: -200% 0;
+    100% {
+      transform: translateX(-50%);
     }
   }
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* ── Base layer ── */
 @layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
   html {
     scroll-behavior: smooth;
     color-scheme: dark;
@@ -33,131 +38,83 @@
   body {
     font-family: var(--font-sans);
     background-color: var(--color-dark);
-    color: #fff;
+    color: #eeeeee;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    /* Tech Grid Background */
+    background-position: center top;
   }
 
-  /* Responsive Typography Scaling */
-  h1 {
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-  }
-
-  h2 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  p {
-    font-size: clamp(1rem, 1.2vw, 1.25rem);
-    line-height: 1.6;
-  }
-
-  ::selection {
-    background: rgba(0, 243, 255, 0.3);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    /* Extra Bold */
+    letter-spacing: -0.04em;
     color: #fff;
-  }
-
-  /* Hide Scrollbar for clean look but allow scroll */
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
   }
 }
 
-/* ── Components ── */
 @layer components {
-  .glass-panel {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    padding: 2rem;
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
 
-  .glass-panel:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  .text-gradient {
-    background: linear-gradient(to right, #fff 0%, #a5a5a5 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .text-gradient-color {
-    background: linear-gradient(135deg, #00f3ff 0%, #bc13fe 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Hot Button with Shimmer */
-  .btn-hot {
+  /* Tech Card */
+  .tech-card {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    background: #fff;
-    color: #000;
-    font-weight: 600;
-    padding: 1rem 2.5rem;
-    border-radius: 100px;
-    font-size: 1rem;
-    cursor: pointer;
     overflow: hidden;
-    transition: transform 0.2s;
   }
 
-  .btn-hot:hover {
-    transform: scale(1.05);
-  }
-
-  .btn-hot::after {
+  /* Corner Accents */
+  .tech-card::before {
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid var(--color-primary-cyan);
+    border-left: 1px solid var(--color-primary-cyan);
+    opacity: 0.5;
   }
 
-  .btn-hot:hover::after {
-    transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
+  .tech-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-bottom: 1px solid var(--color-primary-cyan);
+    border-right: 1px solid var(--color-primary-cyan);
+    opacity: 0.5;
   }
 
-  .btn-secondary {
-    @apply backdrop-blur-md bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full font-medium transition-all hover:bg-white/10 hover:border-white/20;
+  .text-gradient-tech {
+    background: linear-gradient(to right, #fff, #999);
+    /* Metallic gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .section-label {
-    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium uppercase tracking-widest text-primary-cyan mb-6;
+  .btn-tech {
+    @apply relative px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm overflow-hidden transition-all hover:bg-primary-cyan hover:scale-105;
+    font-family: var(--font-mono);
   }
 
-  /* Responsive Spacing Utilities */
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
   .layout-grid {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1400px] mx-auto px-6;
   }
-}
-
-.cursor-none {
-  cursor: none;
 }
