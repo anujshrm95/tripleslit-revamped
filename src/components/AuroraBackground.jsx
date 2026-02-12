@@ -5,8 +5,8 @@ const AuroraBackground = () => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    const springX = useSpring(mouseX, { stiffness: 40, damping: 20 });
-    const springY = useSpring(mouseY, { stiffness: 40, damping: 20 });
+    const springX = useSpring(mouseX, { stiffness: 200, damping: 25 });
+    const springY = useSpring(mouseY, { stiffness: 200, damping: 25 });
 
     // Starfield logic
     const [stars, setStars] = useState([]);
