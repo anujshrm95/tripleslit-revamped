@@ -9,40 +9,24 @@ import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
-import Preloader from './components/Preloader';
+<div className="app min-h-screen">
+  <AnimatePresence>
+    {loading && <Preloader onComplete={() => setLoading(false)} />}
+  </AnimatePresence>
 
-function App() {
-  const [loading, setLoading] = useState(true);
-
-  // Smooth scroll reset on refresh
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  return (
-    // Put back the specific dark BG just to be safe, though index.css handles it.
-    // We'll stick to 'min-h-screen' and let index.css do the heavy lifting
-    <div className="app cursor-none min-h-screen">
-      <CustomCursor />
-
-      <AnimatePresence>
-        {loading && <Preloader onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
-
-      {!loading && (
-        <>
-          <Navbar />
-          <Hero />
-          <Services />
-          <About />
-          <Testimonials />
-          <CTA />
-          <Contact />
-          <Footer />
-        </>
-      )}
-    </div>
+  {!loading && (
+    <>
+      <Navbar />
+      <Hero />
+      <Services />
+      <About />
+      <Testimonials />
+      <CTA />
+      <Contact />
+      <Footer />
+    </>
+  )}
+</div>
   );
 }
 

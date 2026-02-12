@@ -162,7 +162,3 @@
     @apply w-full bg-black/40 border-y border-white/10 overflow-hidden py-6 mt-20 relative z-20 backdrop-blur-md;
   }
 }
-
-.cursor-none {
-  cursor: none;
-}
