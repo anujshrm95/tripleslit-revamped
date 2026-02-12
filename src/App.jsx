@@ -21,7 +21,9 @@ function App() {
   }, []);
 
   return (
-    <div className="app cursor-none min-h-screen bg-[#030014]">
+    // Put back the specific dark BG just to be safe, though index.css handles it.
+    // We'll stick to 'min-h-screen' and let index.css do the heavy lifting
+    <div className="app cursor-none min-h-screen">
       <CustomCursor />
 
       <AnimatePresence>
@@ -32,14 +34,10 @@ function App() {
         <>
           <Navbar />
           <Hero />
-          <div className="section-divider"></div>
           <Services />
-          <div className="section-divider"></div>
           <About />
-          <div className="section-divider"></div>
           <Testimonials />
           <CTA />
-          <div className="section-divider"></div>
           <Contact />
           <Footer />
         </>

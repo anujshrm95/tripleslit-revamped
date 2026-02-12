@@ -2,17 +2,15 @@
 
 @theme {
   --color-primary-cyan: #00f0ff;
-  /* Cyber Cyan */
   --color-primary-purple: #7000ff;
-  /* Deep Tech Purple */
   --color-dark: #050505;
   --color-surface: #0a0a0a;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  /* New Mono font for "Engineering" feel */
 
   --animate-ticker: ticker 40s linear infinite;
+  --animate-grid: grid-pan 20s linear infinite;
 
   @keyframes ticker {
     0% {
@@ -24,7 +22,16 @@
     }
   }
 
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* New Animation for Background Grid Panning */
+  @keyframes grid-pan {
+    0% {
+      background-position: 0% 0%;
+    }
+
+    100% {
+      background-position: 100% 100%;
+    }
+  }
 }
 
 @layer base {
@@ -40,12 +47,14 @@
     background-color: var(--color-dark);
     color: #eeeeee;
     overflow-x: hidden;
+
+    /* Animated Tech Grid */
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100px 100px;
-    /* Tech Grid Background */
-    background-position: center top;
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: grid-pan 120s linear infinite;
+    /* Very slow movement */
   }
 
   h1,
@@ -55,66 +64,101 @@
   h5,
   h6 {
     font-weight: 800;
-    /* Extra Bold */
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
     color: #fff;
   }
 }
 
 @layer components {
 
-  /* Tech Card */
-  .tech-card {
-    background: rgba(10, 10, 10, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Enhanced Tech Card with Spotlight capability basics */
+  .tech-card,
+  .glass-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .tech-card:hover,
+  .glass-panel:hover {
+    transform: translateY(-8px) scale(1.01);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-color: var(--color-primary-cyan);
+    box-shadow: 0 20px 40px rgba(0, 240, 255, 0.15), inset 0 0 20px rgba(0, 240, 255, 0.05);
   }
 
   /* Corner Accents */
-  .tech-card::before {
+  .tech-card::before,
+  .glass-panel::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 10px;
-    height: 10px;
-    border-top: 1px solid var(--color-primary-cyan);
-    border-left: 1px solid var(--color-primary-cyan);
-    opacity: 0.5;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--color-primary-cyan);
+    border-left: 2px solid var(--color-primary-cyan);
+    border-top-left-radius: 8px;
+    opacity: 0.8;
   }
 
-  .tech-card::after {
+  .tech-card::after,
+  .glass-panel::after {
     content: '';
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 10px;
-    height: 10px;
-    border-bottom: 1px solid var(--color-primary-cyan);
-    border-right: 1px solid var(--color-primary-cyan);
-    opacity: 0.5;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--color-primary-purple);
+    border-right: 2px solid var(--color-primary-purple);
+    border-bottom-right-radius: 8px;
+    opacity: 0.8;
   }
 
-  .text-gradient-tech {
-    background: linear-gradient(to right, #fff, #999);
-    /* Metallic gradient */
+  /* Text Gradients */
+  .text-gradient {
+    background: linear-gradient(to right, #00f0ff, #7000ff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
+  /* Buttons */
   .btn-tech {
-    @apply relative px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm overflow-hidden transition-all hover:bg-primary-cyan hover:scale-105;
+    @apply relative px-8 py-4 bg-white/10 text-white font-bold uppercase tracking-wider text-sm overflow-hidden transition-all border border-white/20 rounded-lg hover:bg-primary-cyan hover:text-black hover:border-primary-cyan hover:shadow-[0_0_30px_rgba(0, 240, 255, 0.5)];
     font-family: var(--font-mono);
   }
 
-  .font-mono {
+  .btn-primary {
+    @apply w-full bg-gradient-to-r from-primary-cyan to-primary-purple text-white font-bold uppercase tracking-wider py-4 rounded-lg hover:brightness-110 hover:shadow-lg transition-all;
     font-family: var(--font-mono);
+  }
+
+  .form-input {
+    @apply w-full bg-black/40 border border-white/20 px-4 py-3 text-white placeholder-white/30 rounded-lg focus:outline-none focus:border-primary-cyan focus:ring-1 focus:ring-primary-cyan/50 transition-all font-mono text-sm;
   }
 
   .layout-grid {
     @apply max-w-[1400px] mx-auto px-6;
   }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/20 rounded-full text-primary-cyan text-xs font-mono uppercase mb-6 tracking-widest font-semibold shadow-inner;
+  }
+
+  /* Ticker */
+  .ticker-container {
+    @apply w-full bg-black/40 border-y border-white/10 overflow-hidden py-6 mt-20 relative z-20 backdrop-blur-md;
+  }
+}
+
+.cursor-none {
+  cursor: none;
 }

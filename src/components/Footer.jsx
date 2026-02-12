@@ -8,20 +8,21 @@ const Footer = () => {
     };
 
     return (
-        <footer className="border-t border-white/5 pt-20 pb-10 relative">
+        // Revert to transparent/glass footer, not solid black
+        <footer className="border-t border-white/5 pt-20 pb-10 relative bg-black/40 backdrop-blur-md">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-12 mb-16">
                     {/* Brand */}
                     <div className="col-span-2">
                         <div className="flex items-center gap-2.5 mb-5">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-cyan to-primary-purple flex items-center justify-center text-black font-black text-sm">
+                            <div className="w-8 h-8 bg-white text-black flex items-center justify-center font-mono font-bold text-sm">
                                 TS
                             </div>
-                            <span className="text-white font-semibold text-lg tracking-tight">
+                            <span className="text-white font-bold text-lg tracking-tight font-mono">
                                 TripleSlited
                             </span>
                         </div>
-                        <p className="text-sm text-white/30 max-w-xs mb-6 leading-relaxed">
+                        <p className="text-sm text-white/40 max-w-xs mb-6 leading-relaxed font-mono">
                             A premium technology studio building products
                             that define industries. AI, Cloud, Web — delivered
                             with precision.
@@ -49,11 +50,11 @@ const Footer = () => {
                     {/* Link Columns */}
                     {Object.entries(links).map(([title, items]) => (
                         <div key={title}>
-                            <h4 className="text-xs font-medium uppercase tracking-[0.15em] text-white/50 mb-5">{title}</h4>
+                            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-white/50 mb-5">{title}</h4>
                             <ul className="flex flex-col gap-3 list-none p-0 m-0">
                                 {items.map((item) => (
                                     <li key={item}>
-                                        <a href="#" className="text-sm text-white/30 hover:text-white transition-colors no-underline">
+                                        <a href="#" className="text-sm font-mono text-white/30 hover:text-white transition-colors no-underline">
                                             {item}
                                         </a>
                                     </li>
@@ -64,11 +65,11 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-white/20">
+                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-xs text-white/20 font-mono">
                         © {new Date().getFullYear()} TripleSlited. All rights reserved.
                     </p>
-                    <div className="flex gap-6 text-xs text-white/20">
+                    <div className="flex gap-6 text-xs text-white/20 font-mono">
                         <a href="#" className="hover:text-white/50 transition-colors no-underline">Privacy</a>
                         <a href="#" className="hover:text-white/50 transition-colors no-underline">Terms</a>
                         <a href="#" className="hover:text-white/50 transition-colors no-underline">Cookies</a>
