@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { ArrowUpRight, Code2, Cpu, Layout } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 
