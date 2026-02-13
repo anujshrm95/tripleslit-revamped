@@ -9,6 +9,7 @@ import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Preloader from './components/Preloader';
 
 function App() {
   const [loading, setLoading] = useState(true);

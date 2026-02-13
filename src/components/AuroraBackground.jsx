@@ -60,21 +60,21 @@ const AuroraBackground = () => {
                 />
             ))}
 
-            {/* Mouse Follower Glow */}
+            {/* Mouse Follower Glow - Optimized Blur */}
             <motion.div
-                className="absolute rounded-full blur-[120px] opacity-40 mix-blend-screen"
+                className="absolute rounded-full blur-[80px] opacity-30 mix-blend-screen"
                 style={{
                     background: 'radial-gradient(circle, rgba(0,243,255,0.4) 0%, rgba(188,19,254,0.1) 40%, transparent 70%)',
                     left: springX,
                     top: springY,
-                    width: 800,
-                    height: 800,
-                    x: -400,
-                    y: -400
+                    width: 600,
+                    height: 600,
+                    x: -300,
+                    y: -300
                 }}
             />
 
-            {/* Moving Blobs */}
+            {/* Moving Blobs - Optimized Blur */}
             <motion.div
                 animate={{
                     scale: [1, 1.2, 1],
@@ -83,7 +83,7 @@ const AuroraBackground = () => {
                     y: [0, -50, 0],
                 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-primary-purple rounded-full blur-[120px] opacity-20 mix-blend-screen"
+                className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-primary-purple rounded-full blur-[80px] opacity-20 mix-blend-screen"
             />
             <motion.div
                 animate={{
@@ -93,7 +93,7 @@ const AuroraBackground = () => {
                     y: [0, 50, 0],
                 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: 2 }}
-                className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-primary-cyan rounded-full blur-[140px] opacity-20 mix-blend-screen"
+                className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-primary-cyan rounded-full blur-[100px] opacity-20 mix-blend-screen"
             />
 
             {/* Noise Overlay */}
