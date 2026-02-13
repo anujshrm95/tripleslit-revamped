@@ -35,7 +35,7 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(0, 240
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
         >
             {/* Spotlight Effect Layer */}
             <motion.div
